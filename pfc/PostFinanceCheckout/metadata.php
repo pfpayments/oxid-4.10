@@ -31,7 +31,7 @@ $aModule = array(
         'en' => 'PFC PostFinanceCheckout Module'
     ),
     'thumbnail' => 'out/pictures/picture.png',
-    'version' => '1.0.7',
+    'version' => '1.0.8',
     'author' => 'customweb GmbH',
     'url' => 'https://www.customweb.com',
     'email' => 'info@customweb.com',
@@ -93,50 +93,50 @@ $aModule = array(
     	),
     ),
     'settings' => array(
+    	array(
+    		'group' => 'pfcPostFinanceCheckoutPostFinance CheckoutSettings',
+    		'name' => 'pfcPostFinanceCheckoutSpaceId',
+    		'type' => 'str',
+    		'value' => ''
+    	),
         array(
-            'group' => 'pfcPostFinanceCheckoutGlobalSettings',
-            'name' => 'pfcPostFinanceCheckoutAppKey',
-            'type' => 'str',
-            'value' => ''
-        ),
-        array(
-            'group' => 'pfcPostFinanceCheckoutGlobalSettings',
+            'group' => 'pfcPostFinanceCheckoutPostFinance CheckoutSettings',
             'name' => 'pfcPostFinanceCheckoutUserId',
             'type' => 'str',
             'value' => ''
         ),
+    	array(
+    		'group' => 'pfcPostFinanceCheckoutPostFinance CheckoutSettings',
+    		'name' => 'pfcPostFinanceCheckoutAppKey',
+    		'type' => 'str',
+    		'value' => ''
+    	),
         array(
-            'group' => 'pfcPostFinanceCheckoutSettings',
-            'name' => 'pfcPostFinanceCheckoutSpaceId',
-            'type' => 'str',
-            'value' => ''
-        ),
-        array(
-            'group' => 'pfcPostFinanceCheckoutSettings',
+            'group' => 'pfcPostFinanceCheckoutPostFinance CheckoutSettings',
             'name' => 'pfcPostFinanceCheckoutSpaceViewId',
             'type' => 'str',
             'value' => ''
         ),
         array(
-            'group' => 'pfcPostFinanceCheckoutSettings',
+            'group' => 'pfcPostFinanceCheckoutShopSettings',
             'name' => 'pfcPostFinanceCheckoutEmailConfirm',
             'type' => 'bool',
             'value' => true
         ),
         array(
-            'group' => 'pfcPostFinanceCheckoutSettings',
+            'group' => 'pfcPostFinanceCheckoutShopSettings',
             'name' => 'pfcPostFinanceCheckoutInvoiceDoc',
             'type' => 'bool',
             'value' => true
         ),
         array(
-            'group' => 'pfcPostFinanceCheckoutSettings',
+            'group' => 'pfcPostFinanceCheckoutShopSettings',
             'name' => 'pfcPostFinanceCheckoutPackingDoc',
             'type' => 'bool',
             'value' => true
         ),
         array(
-            'group' => 'pfcPostFinanceCheckoutSettings',
+            'group' => 'pfcPostFinanceCheckoutShopSettings',
             'name' => 'pfcPostFinanceCheckoutLogLevel',
             'type' => 'select',
             'value' => 'Error',
