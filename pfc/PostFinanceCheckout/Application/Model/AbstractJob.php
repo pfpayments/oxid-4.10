@@ -25,7 +25,7 @@ use Pfc\PostFinanceCheckout\Core\PostFinanceCheckoutModule;
  */
 abstract class AbstractJob extends \oxbase
 {
-	protected $_aSkipSaveFields = ['oxtimestamp', 'PFCUPDATED'];
+	protected $_aSkipSaveFields = ['oxtimestamp', 'pfcupdated'];
     private $sdkObject;
 
     /**

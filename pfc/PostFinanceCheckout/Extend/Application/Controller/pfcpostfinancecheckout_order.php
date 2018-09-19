@@ -56,7 +56,9 @@ class_exists('oxorder');    	$order = oxNew('oxorder');
                 $transaction = Transaction::loadPendingFromSession($this->getSession());
                 /* @var $order \Pfc\PostFinanceCheckout\Extend\Application\Model\Order */
                 /** @noinspection PhpParamsInspection */
+                $order->setConfirming(true);
                 $state = $order->finalizeOrder($this->getBasket(), $this->getUser());
+                $order->setConfirming(false);
                 if ($state === 'POSTFINANCECHECKOUT_' . TransactionState::PENDING) {
                     $transaction->setTempBasket($this->getBasket());
                     $transaction->setOrderId($order->getId());
@@ -80,7 +82,7 @@ class_exists('oxorder');    	$order = oxNew('oxorder');
                 $response['message'] = $e->getMessage();
             }
         } else {
-            $response['message'] = PostFinanceCheckoutModule::instance()->translate("Not a WhiteLabenName order.");
+            $response['message'] = PostFinanceCheckoutModule::instance()->translate("Not a PostFinance Checkout order.");
         }
 
         PostFinanceCheckoutModule::renderJson($response);

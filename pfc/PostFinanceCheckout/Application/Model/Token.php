@@ -18,7 +18,7 @@ class Token extends \oxbase
 {
 
 	private $_sTableName = 'pfcPostFinanceCheckout_token';
-	protected $_aSkipSaveFields = ['oxtimestamp', 'PFCUPDATED'];
+	protected $_aSkipSaveFields = ['oxtimestamp', 'pfcupdated'];
 
     /**
      * Class constructor.

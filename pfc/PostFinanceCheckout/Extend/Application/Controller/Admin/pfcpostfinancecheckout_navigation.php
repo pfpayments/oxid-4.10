@@ -47,7 +47,7 @@ class pfcpostfinancecheckout_navigation extends pfcpostfinancecheckout_navigatio
                         );
                         break;
                     default:
-                        PostFinanceCheckoutModule::log(Logger::WARNING, "Unkown alert loaded from database: " . print_r($row, true));
+                        PostFinanceCheckoutModule::log(Logger::WARNING, "Unkown alert loaded from database: " . array($row));
                 }
             }
         }

@@ -82,16 +82,15 @@ class Settings {
 	}
 
 	public function getMigration() {
-        $level = $this->getSetting('Migration');
-        if(!$level) {
+		$level = \oxregistry::getConfig()->getShopConfVar('pfcPostFinanceCheckoutMigration', \oxregistry::getConfig()->getBaseShopId(),\oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
+		if(!$level) {
             $level = 0;
         }
         return $level;
     }
 
     public function setMigration($level) {
-        // save config directly
-    	\oxregistry::getConfig()->saveShopConfVar('int', 'pfcPostFinanceCheckoutMigration', $level);
+    	\oxregistry::getConfig()->saveShopConfVar('num', 'pfcPostFinanceCheckoutMigration', $level, \oxregistry::getConfig()->getBaseShopId(), \oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
     }
 
 	protected function getLogLevel(){
@@ -121,19 +120,19 @@ class Settings {
     }
 
 	public function getWebhookUrl() {
-	    return $this->getSetting('WebhookUrl');
+		return \oxregistry::getConfig()->getShopConfVar('pfcPostFinanceCheckoutWebhook', \oxregistry::getConfig()->getBaseShopId(),\oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
     }
 
     public function setWebhookUrl($value) {
-    	\oxregistry::getConfig()->saveShopConfVar('string', 'pfcPostFinanceCheckoutWebhook', $value);
+    	\oxregistry::getConfig()->saveShopConfVar('string', 'pfcPostFinanceCheckoutWebhook', $value, \oxregistry::getConfig()->getBaseShopId(), \oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
     }
 
     public function setGlobalParameters($shopId = null) {
     	$appKey = \oxregistry::getConfig()->getShopConfVar('pfcPostFinanceCheckoutAppKey', $shopId, \oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
     	$userId = \oxregistry::getConfig()->getShopConfVar('pfcPostFinanceCheckoutUserId', $shopId, \oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
-	    foreach(\oxregistry::getConfig()->getShopIds() as $shop) {
+    	foreach(\oxregistry::getConfig()->getShopIds() as $shop) {
 	    	\oxregistry::getConfig()->saveShopConfVar('str', 'pfcPostFinanceCheckoutAppKey', $appKey, $shop, \oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
 	    	\oxregistry::getConfig()->saveShopConfVar('str', 'pfcPostFinanceCheckoutUserId', $userId, $shop, \oxconfig::OXMODULE_MODULE_PREFIX . PostFinanceCheckoutModule::instance()->getId());
-        }
+    	}
     }
 }
