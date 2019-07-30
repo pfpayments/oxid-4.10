@@ -2,7 +2,7 @@
 /**
  * PostFinanceCheckout OXID
  *
- * This OXID module enables to process payments with PostFinanceCheckout (https://www.postfinance.ch/).
+ * This OXID module enables to process payments with PostFinanceCheckout (https://www.postfinance.ch/checkout/).
  *
  * @package Whitelabelshortcut\PostFinanceCheckout
  * @author customweb GmbH (http://www.customweb.com/)
@@ -77,8 +77,11 @@ class_exists('oxcountry');        $country = oxNew('oxcountry');
         $addressCreate->setPostCode($address->getFieldData('oxzip'));
         $addressCreate->setOrganizationName($address->getFieldData('oxcompany'));
         $addressCreate->setMobilePhoneNumber($address->getFieldData('oxmobfon'));
-        $addressCreate->setDateOfBirth(new \DateTime($address->getFieldData('oxbirthdate')));
-
+        
+        $birthdate = $address->getFieldData('oxbirthdate');
+        if(!empty($birthdate) && $birthdate != '0000-00-00'){
+            $addressCreate->setDateOfBirth(new \DateTime($birthdate));
+        }        
         $salutation = $address->getFieldData('oxsal');
         if (strtolower($salutation) === 'mr') {
             /** @noinspection PhpParamsInspection */
