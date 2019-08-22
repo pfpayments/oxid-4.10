@@ -31,7 +31,7 @@ $aModule = array(
         'en' => 'PFC PostFinanceCheckout Module'
     ),
     'thumbnail' => 'out/pictures/picture.png',
-    'version' => '1.0.12',
+    'version' => '1.0.13',
     'author' => 'customweb GmbH',
     'url' => 'https://www.customweb.com',
     'email' => 'info@customweb.com',
@@ -56,7 +56,6 @@ $aModule = array(
 		'pfc_postFinanceCheckout_Transaction' => 'pfc/PostFinanceCheckout/Application/Controller/Admin/pfc_postFinanceCheckout_Transaction.php',
     ),
     'templates' => array(
-    	'pfcPostFinanceCheckoutCheckoutBasket.tpl' => 'pfc/PostFinanceCheckout/Application/views/pages/pfcPostFinanceCheckoutCheckoutBasket.tpl',
         'pfcPostFinanceCheckoutCheckoutBasket.tpl' => 'pfc/PostFinanceCheckout/Application/views/pages/pfcPostFinanceCheckoutCheckoutBasket.tpl',
         'pfcPostFinanceCheckoutCron.tpl' => 'pfc/PostFinanceCheckout/Application/views/pages/pfcPostFinanceCheckoutCron.tpl',
         'pfcPostFinanceCheckoutError.tpl' => 'pfc/PostFinanceCheckout/Application/views/pages/pfcPostFinanceCheckoutError.tpl',

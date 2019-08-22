@@ -9,40 +9,12 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache Software License (ASL 2.0)
  */
 
-
 $sLangName = 'Deutsch';
 
 $aLang = array(
     'charset' => 'UTF-8',
-    'pfcPostFinanceCheckout' => 'PFC PostFinanceCheckout',
-
-    'SHOP_MODULE_GROUP_pfcPostFinanceCheckoutPostFinance CheckoutSettings' => 'PostFinance Checkout Einstellungen',
-	'SHOP_MODULE_GROUP_pfcPostFinanceCheckoutShopSettings' => 'Shop Einstellungen',
-	'SHOP_MODULE_GROUP_pfcPostFinanceCheckoutSpaceViewId' => 'Space View Id',
-    'SHOP_MODULE_pfcPostFinanceCheckoutAppKey' => 'Authentication Key',
-	'SHOP_MODULE_pfcPostFinanceCheckoutUserId' => 'Benutzer Id',
-    'SHOP_MODULE_pfcPostFinanceCheckoutSpaceId' => 'Space Id',
-	'SHOP_MODULE_pfcPostFinanceCheckoutSpaceViewSettings' => 'Space View Optionen',
-    'SHOP_MODULE_pfcPostFinanceCheckoutEmailConfirm' => 'Email Bestätigung',
-    'SHOP_MODULE_pfcPostFinanceCheckoutInvoiceDoc' => 'Rechnung',
-    'SHOP_MODULE_pfcPostFinanceCheckoutPackingDoc' => 'Lieferschein',
-    'SHOP_MODULE_pfcPostFinanceCheckoutLogLevel' => 'Log Level',
-    'SHOP_MODULE_pfcPostFinanceCheckoutLogLevel_' => ' - ',
-    'SHOP_MODULE_pfcPostFinanceCheckoutLogLevel_Error' => 'Error',
-    'SHOP_MODULE_pfcPostFinanceCheckoutLogLevel_Debug' => 'Debug',
-    'SHOP_MODULE_pfcPostFinanceCheckoutLogLevel_Info' => 'Info',
 	
-	'HELP_SHOP_MODULE_pfcPostFinanceCheckoutUserId' => 'Der Benutzer benötigt volle Berechtigungen auf dem verbundenen space.',
-	'HELP_SHOP_MODULE_pfcPostFinanceCheckoutSpaceViewId' => 'Die Space View ID lässt das Gestalten der Zahlungsformulare und -seiten innerhalb eines Spaces. Dies kann u.A. für Multishopsysteme die unterschiedliche Aussehen haben sollten verwendet werden.',	'HELP_SHOP_MODULE_pfcPostFinanceCheckoutEmailConfirm' => 'You may deactivate the OXID order confirmation email for PostFinance Checkout transactions.',
-	'HELP_SHOP_MODULE_pfcPostFinanceCheckoutInvoiceDoc' => 'Sie können ihren Kunden erlauben Rechnungen für Ihre Bestellungen im Frontend-Bereich herunterzuladen.',
-	'HELP_SHOP_MODULE_pfcPostFinanceCheckoutPackingDoc' => 'Sie können ihren Kunden erlauben Lieferscheine für Ihre Bestellungen im Frontend-Bereich herunterzuladen.',
-	'HELP_SHOP_MODULE_pfcPostFinanceCheckoutEmailConfirm' => 'Sie können OXID Bestellbestätigungen für PostFinance Checkout Transaktionen unterbinden.',
-	
-	'pfc_postFinanceCheckout_Settings saved successfully.' => 'Die Einstellungen wurden erfolgreich gespeichert.',
-	'pfc_postFinanceCheckout_Payment methods successfully synchronized.' => 'Die Zahlarten wurden synchronisiert.',
-	'pfc_postFinanceCheckout_Webhook URL updated.' => 'Webhook URL wurde aktualisiert.',
-	//TODO remove unneeded
-	
+	'pfc_postFinanceCheckout_Downloads' => 'Dokumente herunterladen',
 	'pfc_postFinanceCheckout_Download Invoice' => 'Rechnung herunterladen',
 	'pfc_postFinanceCheckout_Download Packing Slip' => 'Lieferschein herunterladen',
 	'pfc_postFinanceCheckout_Delivery Fee' => 'Liefergebühr',
@@ -77,6 +49,7 @@ $aLang = array(
 	'pfc_postFinanceCheckout_Open in your PostFinance Checkout backend.' => 'Öffne im PostFinance Checkout backend.',
 	'pfc_postFinanceCheckout_Open' => 'Öffnen',
 	'pfc_postFinanceCheckout_PostFinance Checkout Link' => 'PostFinance Checkout Link',
+	'pfc_postFinanceCheckout_You must agree to the terms and conditions.' => 'Sie müssen den AGBs und Datenschutzvereinbarung zustimmen.',
 	
 	// tpl translations
 	'pfc_postFinanceCheckout_Restock' => 'Lagerbestand wiederherstellen',
@@ -94,4 +67,5 @@ $aLang = array(
 	'pfc_postFinanceCheckout_Refund amount' => 'Rückerstattungsbetrag',
 	
 	// menu
-	'pfc_postFinanceCheckout_transaction_title' => 'PostFinance Checkout Transaktion');
+	'pfc_postFinanceCheckout_transaction_title' => 'PostFinance Checkout Transaktion'
+);
