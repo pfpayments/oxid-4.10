@@ -20,6 +20,8 @@ use PostFinanceCheckout\Sdk\Model\TransactionPending;
 use PostFinanceCheckout\Sdk\Service\TransactionInvoiceService;
 use Pfc\PostFinanceCheckout\Core\PostFinanceCheckoutModule;
 use \PostFinanceCheckout\Sdk\Service\TransactionService as SdkTransactionService;
+use \PostFinanceCheckout\Sdk\Service\TransactionIframeService;
+use \PostFinanceCheckout\Sdk\Service\TransactionPaymentPageService;
 
 /**
  * Class TransactionService
@@ -30,6 +32,8 @@ use \PostFinanceCheckout\Sdk\Service\TransactionService as SdkTransactionService
 class TransactionService extends AbstractService {
 	private $service;
 	private $invoiceService;
+	private $paymentPageService;
+	private $iframeService;
 
 	protected function getService(){
 		if (!$this->service) {
@@ -47,6 +51,28 @@ class TransactionService extends AbstractService {
 			$this->invoiceService = new TransactionInvoiceService(PostFinanceCheckoutModule::instance()->getApiClient());
 		}
 		return $this->invoiceService;
+	}
+	
+	/**
+	 *
+	 * @return TransactionPaymentPageService
+	 */
+	protected function getPaymentPageService(){
+		if (!$this->paymentPageService) {
+			$this->paymentPageService = new TransactionPaymentPageService(PostFinanceCheckoutModule::instance()->getApiClient());
+		}
+		return $this->paymentPageService;
+	}
+	
+	/**
+	 *
+	 * @return TransactionIframeService
+	 */
+	protected function getIframeService(){
+		if (!$this->iframeService) {
+			$this->iframeService = new TransactionIframeService(PostFinanceCheckoutModule::instance()->getApiClient());
+		}
+		return $this->iframeService;
 	}
 
 	/**
@@ -98,7 +124,7 @@ class TransactionService extends AbstractService {
 	 * @throws \PostFinanceCheckout\Sdk\ApiException
 	 */
 	public function getPaymentPageUrl($transactionId, $spaceId){
-		return $this->getService()->buildPaymentPageUrl($spaceId, $transactionId);
+		return $this->getPaymentPageService()->paymentPageUrl($spaceId, $transactionId);
 	}
 
 	/**
@@ -129,6 +155,6 @@ class TransactionService extends AbstractService {
 	 * @throws \PostFinanceCheckout\Sdk\ApiException
 	 */
 	public function getJavascriptUrl($transactionId, $spaceId){
-		return $this->getService()->buildJavaScriptUrl($spaceId, $transactionId);
+		return $this->getIframeService()->javascriptUrl($spaceId, $transactionId);
 	}
 }

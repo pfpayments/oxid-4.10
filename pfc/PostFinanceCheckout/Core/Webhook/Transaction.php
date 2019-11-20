@@ -80,6 +80,7 @@ class_exists(\Pfc\PostFinanceCheckout\Application\Model\Transaction::class);    
                     $cancel = true;
                 case TransactionState::DECLINE:
                 case TransactionState::FAILED:
+                	$order->setPostFinanceCheckoutState($entity->getState());
                 	$order->PostFinanceCheckoutFail($entity->getUserFailureMessage(), $entity->getState(), $cancel, true);
                 	return true;
                 default:

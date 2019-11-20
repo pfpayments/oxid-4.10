@@ -58,16 +58,21 @@ class_exists(\Pfc\PostFinanceCheckout\Application\Model\Transaction::class);    
 
     public function refund()
     {
+    	PostFinanceCheckoutModule::log(Logger::DEBUG, "Start refund.");
 class_exists(\Pfc\PostFinanceCheckout\Application\Model\Transaction::class);        $transaction = oxNew(\Pfc\PostFinanceCheckout\Application\Model\Transaction::class);
         /* @var $transaction \Pfc\PostFinanceCheckout\Application\Model\Transaction */
-
         try {
-            if ($transaction->loadByOrder($this->getEditObjectId())) {
-                $job = RefundService::instance()->create($transaction, false);
+        	if ($transaction->loadByOrder($this->getEditObjectId())) {
+        		PostFinanceCheckoutModule::log(Logger::DEBUG, "Loaded by order.");
+        		$transaction->pull();
+        		$job = RefundService::instance()->create($transaction, false);
+        		PostFinanceCheckoutModule::log(Logger::DEBUG, "Created job.");
                 $job->setFormReductions(PostFinanceCheckoutModule::instance()->getRequestParameter('item'));
                 $job->setRestock(PostFinanceCheckoutModule::instance()->getRequestParameter('restock') !== null);
                 $job->save();
+                PostFinanceCheckoutModule::log(Logger::DEBUG, "Saved job.");
                 RefundService::instance()->send($job);
+                PostFinanceCheckoutModule::log(Logger::DEBUG, "Sent job.");
             } else {
                 PostFinanceCheckoutModule::log(Logger::ERROR, "Unable to load transaction for order {$this->getEditObjectId()}.");
             }
