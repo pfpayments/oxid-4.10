@@ -17,6 +17,8 @@ use PostFinanceCheckout\Sdk\Model\TransactionCreate;
 use PostFinanceCheckout\Sdk\Model\TransactionPending;
 use Pfc\PostFinanceCheckout\Core\PostFinanceCheckoutModule;
 use Pfc\PostFinanceCheckout\Application\Model\Transaction;
+use PostFinanceCheckout\Sdk\Model\LineItemCreate;
+use PostFinanceCheckout\Sdk\Model\LineItemType;
 
 /**
  * Class SessionAdapter
@@ -74,6 +76,17 @@ class_exists('oxorder');			$order = oxNew('oxorder');
 						array(
 							PostFinanceCheckoutModule::extractPostFinanceCheckoutId($order->oxorder__oxpaymenttype->value) 
 						));
+				$totalDifference = $this->getTotalsDifference($transactionPending->getLineItems(), $order);
+				if($totalDifference) {
+					if(PostFinanceCheckoutModule::settings()->enforceLineItemConsistency()) {
+						throw new \Exception(PostFinanceCheckoutModule::instance()->translate('Totals mismatch, please contact merchant or use another payment method.'));
+					}
+					else {
+						$lineItems = $transactionPending->getLineItems();
+						$lineItems[] = $this->createRoundingAdjustment($totalDifference);
+						$transactionPending->setLineItems($lineItems);
+					}
+				}
 			}
 		}
 		
@@ -94,4 +107,26 @@ class_exists('oxorder');			$order = oxNew('oxorder');
 		$transaction->setSuccessUrl(PostFinanceCheckoutModule::getControllerUrl('thankyou', null, null, true));
 		$transaction->setFailedUrl(PostFinanceCheckoutModule::getControllerUrl('order', 'pfcError', null, true));
 	}
+	
+	private function getTotalsDifference(array $lineItems, \oxorder $order) {
+		$total = 0;
+		foreach($lineItems as $lineItem) {
+			$total += $lineItem->getAmountIncludingtax();
+		}
+		return \oxregistry::getUtils()->fRound($total - $order->getTotalOrderSum(), $order->getOrderCurrency());
+	}
+	
+	private function createRoundingAdjustment($amount)
+	{
+		$lineItem = new LineItemCreate();
+		/** @noinspection PhpParamsInspection */
+		$lineItem->setType(LineItemType::FEE);
+		$lineItem->setAmountIncludingTax($amount);
+		$lineItem->setName(PostFinanceCheckoutModule::instance()->translate('Rounding Adjustment'));
+		$lineItem->setQuantity(1);
+		$lineItem->setUniqueId('rounding_adjustment');
+		$lineItem->setSku('rounding_adjustment');
+		return $lineItem;
+	}
+	
 }
