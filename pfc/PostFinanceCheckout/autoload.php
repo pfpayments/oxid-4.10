@@ -8,7 +8,7 @@
  * @author customweb GmbH (http://www.customweb.com/)
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache Software License (ASL 2.0)
  */
-require_once(OX_BASE_PATH . 'modules/pfc/PostFinanceCheckout/wallee-sdk/autoload.php');
+require_once(OX_BASE_PATH . 'modules/pfc/PostFinanceCheckout/postfinancecheckout-sdk/autoload.php');
 
 /**
  * Autoload function.
