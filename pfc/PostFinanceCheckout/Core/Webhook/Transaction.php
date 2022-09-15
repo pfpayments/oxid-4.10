@@ -58,7 +58,18 @@ class_exists(\Pfc\PostFinanceCheckout\Application\Model\Transaction::class);    
      */
     protected function processOrderRelatedInner(\oxorder $order, $entity)
     {
+        $finalStates = [
+            TransactionState::FAILED,
+            TransactionState::VOIDED,
+            TransactionState::DECLINE,
+            TransactionState::FULFILL
+        ];
+
         /* @var $entity \PostFinanceCheckout\Sdk\Model\Transaction */
+        if (in_array($entity->getState(), $finalStates)) {
+            return false;
+        }
+
         /* @var $order \Pfc\PostFinanceCheckout\Extend\Application\Model\Order */
         if ($entity && $entity->getState() !== $order->getPostFinanceCheckoutTransaction()->getState()) {
             $cancel = false;

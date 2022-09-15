@@ -16,6 +16,7 @@ use Monolog\Logger;
 use PostFinanceCheckout\Sdk\Model\RefundState;
 use PostFinanceCheckout\Sdk\Model\TransactionCompletionState;
 use PostFinanceCheckout\Sdk\Model\TransactionVoidState;
+use Pfc\PostFinanceCheckout\Core\Exception\OptimisticLockingException;
 use Pfc\PostFinanceCheckout\Core\Service\CompletionService;
 use Pfc\PostFinanceCheckout\Core\Service\RefundService;
 use Pfc\PostFinanceCheckout\Core\Service\VoidService;
@@ -58,6 +59,9 @@ class_exists(\Pfc\PostFinanceCheckout\Application\Model\Transaction::class);    
             } else {
                 throw new \Exception(PostFinanceCheckoutModule::instance()->translate('No order selected'));
             }
+        } catch (OptimisticLockingException $e) {
+            $this->_aViewData['pfc_postFinanceCheckout_enabled'] = $e->getMessage();
+            return $this->_sThisTemplate;
         } catch (\Exception $e) {
             $this->_aViewData['pfc_error'] = $e->getMessage();
             return 'pfcPostFinanceCheckoutError.tpl';
