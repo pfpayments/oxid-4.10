@@ -12,7 +12,6 @@
 namespace Pfc\PostFinanceCheckout\Application\Model;
 require_once(OX_BASE_PATH . 'modules/pfc/PostFinanceCheckout/autoload.php');
 
-;
 
 /**
  * Class Alert.
@@ -43,15 +42,5 @@ class Alert
     public static function loadAll() {
         $query = "SELECT `PFCKEY`, `PFCCOUNT`, `PFCFUNC`, `PFCTARGET` FROM `pfcPostFinanceCheckout_alert`";
         return \oxdb::getDb()->getAll($query);
-    }
-
-    /**
-     * Class constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->init(self::getTableName());
     }
 }
