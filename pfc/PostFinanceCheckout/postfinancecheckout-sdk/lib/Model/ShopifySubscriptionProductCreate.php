@@ -22,7 +22,7 @@ namespace PostFinanceCheckout\Sdk\Model;
 use \PostFinanceCheckout\Sdk\ObjectSerializer;
 
 /**
- * PaymentTerminalContactAddress model
+ * ShopifySubscriptionProductCreate model
  *
  * @category    Class
  * @description 
@@ -30,7 +30,7 @@ use \PostFinanceCheckout\Sdk\ObjectSerializer;
  * @author      customweb GmbH
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
-class PaymentTerminalContactAddress extends PaymentTerminalAddress 
+class ShopifySubscriptionProductCreate extends AbstractShopifySubscriptionProductUpdate 
 {
     const DISCRIMINATOR = null;
 
@@ -39,7 +39,7 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
       *
       * @var string
       */
-    protected static $swaggerModelName = 'PaymentTerminalContactAddress';
+    protected static $swaggerModelName = 'ShopifySubscriptionProduct.Create';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -47,10 +47,9 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'family_name' => 'string',
-        'given_name' => 'string',
-        'organization_name' => 'string',
-        'phone_number' => 'string'
+        'product_id' => 'string',
+        'product_variant_id' => 'string',
+        'shop' => 'int'
     ];
 
     /**
@@ -59,10 +58,9 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'family_name' => null,
-        'given_name' => null,
-        'organization_name' => null,
-        'phone_number' => null
+        'product_id' => null,
+        'product_variant_id' => null,
+        'shop' => 'int64'
     ];
 
     /**
@@ -72,10 +70,9 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      * @var string[]
      */
     protected static $attributeMap = [
-        'family_name' => 'familyName',
-        'given_name' => 'givenName',
-        'organization_name' => 'organizationName',
-        'phone_number' => 'phoneNumber'
+        'product_id' => 'productId',
+        'product_variant_id' => 'productVariantId',
+        'shop' => 'shop'
     ];
 
     /**
@@ -84,10 +81,9 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      * @var string[]
      */
     protected static $setters = [
-        'family_name' => 'setFamilyName',
-        'given_name' => 'setGivenName',
-        'organization_name' => 'setOrganizationName',
-        'phone_number' => 'setPhoneNumber'
+        'product_id' => 'setProductId',
+        'product_variant_id' => 'setProductVariantId',
+        'shop' => 'setShop'
     ];
 
     /**
@@ -96,10 +92,9 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      * @var string[]
      */
     protected static $getters = [
-        'family_name' => 'getFamilyName',
-        'given_name' => 'getGivenName',
-        'organization_name' => 'getOrganizationName',
-        'phone_number' => 'getPhoneNumber'
+        'product_id' => 'getProductId',
+        'product_variant_id' => 'getProductVariantId',
+        'shop' => 'getShop'
     ];
 
     
@@ -116,13 +111,11 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
         parent::__construct($data);
 
         
-        $this->container['family_name'] = isset($data['family_name']) ? $data['family_name'] : null;
+        $this->container['product_id'] = isset($data['product_id']) ? $data['product_id'] : null;
         
-        $this->container['given_name'] = isset($data['given_name']) ? $data['given_name'] : null;
+        $this->container['product_variant_id'] = isset($data['product_variant_id']) ? $data['product_variant_id'] : null;
         
-        $this->container['organization_name'] = isset($data['organization_name']) ? $data['organization_name'] : null;
-        
-        $this->container['phone_number'] = isset($data['phone_number']) ? $data['phone_number'] : null;
+        $this->container['shop'] = isset($data['shop']) ? $data['shop'] : null;
         
     }
 
@@ -135,6 +128,15 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
     {
         $invalidProperties = parent::listInvalidProperties();
 
+        if ($this->container['product_id'] === null) {
+            $invalidProperties[] = "'product_id' can't be null";
+        }
+        if ($this->container['product_variant_id'] === null) {
+            $invalidProperties[] = "'product_variant_id' can't be null";
+        }
+        if ($this->container['shop'] === null) {
+            $invalidProperties[] = "'shop' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -216,100 +218,75 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
     
 
     /**
-     * Gets family_name
+     * Gets product_id
      *
      * @return string
      */
-    public function getFamilyName()
+    public function getProductId()
     {
-        return $this->container['family_name'];
+        return $this->container['product_id'];
     }
 
     /**
-     * Sets family_name
+     * Sets product_id
      *
-     * @param string $family_name 
+     * @param string $product_id The ID of the Shopify product that is enabled to be ordered as subscription.
      *
      * @return $this
      */
-    public function setFamilyName($family_name)
+    public function setProductId($product_id)
     {
-        $this->container['family_name'] = $family_name;
+        $this->container['product_id'] = $product_id;
 
         return $this;
     }
     
 
     /**
-     * Gets given_name
+     * Gets product_variant_id
      *
      * @return string
      */
-    public function getGivenName()
+    public function getProductVariantId()
     {
-        return $this->container['given_name'];
+        return $this->container['product_variant_id'];
     }
 
     /**
-     * Sets given_name
+     * Sets product_variant_id
      *
-     * @param string $given_name 
+     * @param string $product_variant_id 
      *
      * @return $this
      */
-    public function setGivenName($given_name)
+    public function setProductVariantId($product_variant_id)
     {
-        $this->container['given_name'] = $given_name;
+        $this->container['product_variant_id'] = $product_variant_id;
 
         return $this;
     }
     
 
     /**
-     * Gets organization_name
+     * Gets shop
      *
-     * @return string
+     * @return int
      */
-    public function getOrganizationName()
+    public function getShop()
     {
-        return $this->container['organization_name'];
+        return $this->container['shop'];
     }
 
     /**
-     * Sets organization_name
+     * Sets shop
      *
-     * @param string $organization_name 
+     * @param int $shop 
      *
      * @return $this
      */
-    public function setOrganizationName($organization_name)
+    public function setShop($shop)
     {
-        $this->container['organization_name'] = $organization_name;
-
-        return $this;
-    }
-    
-
-    /**
-     * Gets phone_number
-     *
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->container['phone_number'];
-    }
-
-    /**
-     * Sets phone_number
-     *
-     * @param string $phone_number 
-     *
-     * @return $this
-     */
-    public function setPhoneNumber($phone_number)
-    {
-        $this->container['phone_number'] = $phone_number;
+        $this->container['shop'] = $shop;
 
         return $this;
     }
@@ -321,6 +298,7 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      *
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -333,6 +311,7 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
@@ -346,6 +325,7 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -362,6 +342,7 @@ class PaymentTerminalContactAddress extends PaymentTerminalAddress
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);

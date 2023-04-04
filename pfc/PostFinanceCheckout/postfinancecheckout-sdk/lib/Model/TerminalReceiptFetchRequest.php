@@ -24,15 +24,15 @@ use \ArrayAccess;
 use \PostFinanceCheckout\Sdk\ObjectSerializer;
 
 /**
- * TransactionLineItemUpdateRequest model
+ * TerminalReceiptFetchRequest model
  *
  * @category    Class
- * @description 
+ * @description The receipt fetch request allows to retrieve the receipt documents for a terminal transaction.
  * @package     PostFinanceCheckout\Sdk
  * @author      customweb GmbH
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
-class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
+class TerminalReceiptFetchRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'TransactionLineItemUpdateRequest';
+    protected static $swaggerModelName = 'TerminalReceiptFetchRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -49,8 +49,9 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'new_line_items' => '\PostFinanceCheckout\Sdk\Model\LineItemCreate[]',
-        'transaction_id' => 'int'
+        'format' => '\PostFinanceCheckout\Sdk\Model\TerminalReceiptFormat',
+        'transaction' => 'int',
+        'width' => 'int'
     ];
 
     /**
@@ -59,8 +60,9 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'new_line_items' => null,
-        'transaction_id' => 'int64'
+        'format' => null,
+        'transaction' => 'int64',
+        'width' => 'int32'
     ];
 
     /**
@@ -70,8 +72,9 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'new_line_items' => 'newLineItems',
-        'transaction_id' => 'transactionId'
+        'format' => 'format',
+        'transaction' => 'transaction',
+        'width' => 'width'
     ];
 
     /**
@@ -80,8 +83,9 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'new_line_items' => 'setNewLineItems',
-        'transaction_id' => 'setTransactionId'
+        'format' => 'setFormat',
+        'transaction' => 'setTransaction',
+        'width' => 'setWidth'
     ];
 
     /**
@@ -90,8 +94,9 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'new_line_items' => 'getNewLineItems',
-        'transaction_id' => 'getTransactionId'
+        'format' => 'getFormat',
+        'transaction' => 'getTransaction',
+        'width' => 'getWidth'
     ];
 
     
@@ -112,9 +117,11 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         
-        $this->container['new_line_items'] = isset($data['new_line_items']) ? $data['new_line_items'] : null;
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
         
-        $this->container['transaction_id'] = isset($data['transaction_id']) ? $data['transaction_id'] : null;
+        $this->container['transaction'] = isset($data['transaction']) ? $data['transaction'] : null;
+        
+        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
         
     }
 
@@ -127,8 +134,11 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['transaction_id'] === null) {
-            $invalidProperties[] = "'transaction_id' can't be null";
+        if ($this->container['format'] === null) {
+            $invalidProperties[] = "'format' can't be null";
+        }
+        if ($this->container['transaction'] === null) {
+            $invalidProperties[] = "'transaction' can't be null";
         }
         return $invalidProperties;
     }
@@ -211,50 +221,75 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets new_line_items
+     * Gets format
      *
-     * @return \PostFinanceCheckout\Sdk\Model\LineItemCreate[]
+     * @return \PostFinanceCheckout\Sdk\Model\TerminalReceiptFormat
      */
-    public function getNewLineItems()
+    public function getFormat()
     {
-        return $this->container['new_line_items'];
+        return $this->container['format'];
     }
 
     /**
-     * Sets new_line_items
+     * Sets format
      *
-     * @param \PostFinanceCheckout\Sdk\Model\LineItemCreate[] $new_line_items 
+     * @param \PostFinanceCheckout\Sdk\Model\TerminalReceiptFormat $format The format determines in what format the receipts will be returned in.
      *
      * @return $this
      */
-    public function setNewLineItems($new_line_items)
+    public function setFormat($format)
     {
-        $this->container['new_line_items'] = $new_line_items;
+        $this->container['format'] = $format;
 
         return $this;
     }
     
 
     /**
-     * Gets transaction_id
+     * Gets transaction
      *
      * @return int
      */
-    public function getTransactionId()
+    public function getTransaction()
     {
-        return $this->container['transaction_id'];
+        return $this->container['transaction'];
     }
 
     /**
-     * Sets transaction_id
+     * Sets transaction
      *
-     * @param int $transaction_id 
+     * @param int $transaction Provide here the ID of the transaction for which the receipts should be fetched.
      *
      * @return $this
      */
-    public function setTransactionId($transaction_id)
+    public function setTransaction($transaction)
     {
-        $this->container['transaction_id'] = $transaction_id;
+        $this->container['transaction'] = $transaction;
+
+        return $this;
+    }
+    
+
+    /**
+     * Gets width
+     *
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     *
+     * @param int $width The width controls how width the document will be rendered. In case of the PDF format the width is in mm. In case of the text format the width is in the number of chars per line.
+     *
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->container['width'] = $width;
 
         return $this;
     }
@@ -266,6 +301,7 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      *
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -278,6 +314,7 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
@@ -291,6 +328,7 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -307,6 +345,7 @@ class TransactionLineItemUpdateRequest implements ModelInterface, ArrayAccess
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
